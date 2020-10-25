@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name observatoire)(type Legacy)(uri /home/alain/kicad/Observatoire/observatoire.lib)(options "")(descr ""))
+)
