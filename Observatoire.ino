@@ -52,7 +52,7 @@ void setup() {
   //nv.init();
 
   // set pins for input/output as specified in Config.h and PinMap.h
-  initPins();
+initPins();
 
   // if this is the first startup set EEPROM to defaults
   //initWriteNvValues();
@@ -85,6 +85,29 @@ void loop() {
 
 if (started<2) startup(); //avoid start due to non stabilized inputs
 
+while (calibration){
+  if(!digitalRead(Index_Nord) & (calib==0)){
+    myEnc.write(0);
+    delay(1000);
+    calib++;
+  }
+  if ((calib == 1) & digitalRead(Index_Nord)){
+    sprintf(reply,"calib = %d\n\r", calib);
+    calib++;
+    delay(1000);
+  }
+  if (calib > 1 & !digitalRead(Index_Nord)){
+    newPosition = myEnc.read();
+    sprintf(reply,"rotation pulses = %ld\n\r", newPosition);
+    SerialA.print(reply);
+    while(SerialA.transmit());
+    calibration=false;
+    SerialB.print(STOP);
+    while(SerialB.transmit());
+  }
+
+}
+
 //******************** Time debug
 /*
     t_start = micros();   
@@ -103,10 +126,7 @@ if (started<2) startup(); //avoid start due to non stabilized inputs
 //  |_____|_| |_|\___\___/ \__,_|\___|_|
   
   newPosition = myEnc.read();
-/*  if (newPosition != (oldPosition)) {
-    oldPosition = newPosition;
-  }
-*/
+
 //============================== check moveto
 
   moveto();

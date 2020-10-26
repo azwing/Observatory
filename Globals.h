@@ -64,3 +64,5 @@ char gotodir[2];
 char  testchar[20]="F1200\n";
 
 float goalsetpoint, delta;
+bool  calibration=false;
+int calib=0;

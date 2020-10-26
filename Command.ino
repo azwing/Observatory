@@ -165,6 +165,7 @@ void processCommands() {
   // Unpark     unpark.py     :U#
   if (command[0]=='U') {
     parked=false;
+    reached=false;
     quietReply=false;
     sprintf(reply,"%d\n",quietReply);
   } else  // Resume Parsing
@@ -175,6 +176,7 @@ void processCommands() {
     moveto_flag=true;
     rotation=CW;
     park=true;
+    reached=false;
     quietReply=false;
     sprintf(reply,"%d\n",quietReply);
   } else  // Resume Parsing
@@ -212,6 +214,15 @@ void processCommands() {
     }
     trimmed[i]=0;   
     sprintf(reply,"%d %d %s %ld\n",parked, !V_R_opened, trimmed, newPosition);
+    quietReply=false;
+  } else  // Resume Parsing
+
+  // Status debug     :Z#
+  if (command[0]=='Z') {
+    SerialB.print(VMAX_E);
+    while(SerialB.transmit());
+    calibration=true;
+    calib=0;
     quietReply=false;
   } else  // Resume Parsing
 
