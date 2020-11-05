@@ -37,7 +37,7 @@ void processCommands() {
 
 
     // command processing
-    static char reply[50];
+    static char reply[200];
     static char command[3];
     static char parameter[25];
     static bool commandError = false;
@@ -151,6 +151,7 @@ void processCommands() {
     if (command[1]=='E'){
       SerialB.print(VMAX_E); // move full speed E
       rotation=CW;
+      reached=false;
       quietReply=false;
     } else
     if (command[1]=='W'){
@@ -172,6 +173,7 @@ void processCommands() {
   
   // Parking    park.py       :P#
   if (command[0]=='P') {
+    goalsetpoint=360;
     setpoint=800; //assume park is always at north
     moveto_flag=true;
     rotation=CW;
@@ -213,7 +215,7 @@ void processCommands() {
       j++;
     }
     trimmed[i]=0;   
-    sprintf(reply,"%d %d %s %ld\n",parked, !V_R_opened, trimmed, newPosition);
+    sprintf(reply,"\n___\nAzimuth = %s\nEncoder = %ld\n",trimmed, newPosition);
     quietReply=false;
   } else  // Resume Parsing
 
@@ -222,6 +224,7 @@ void processCommands() {
     SerialB.print(VMAX_E);
     while(SerialB.transmit());
     calibration=true;
+    reached=false;
     calib=0;
     quietReply=false;
   } else  // Resume Parsing

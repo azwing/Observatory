@@ -10,9 +10,9 @@ void moveto(){
  //moveto();
   if (moveto_flag){
     if (abs(setpoint - newPosition) >= DPPV){
-      (setpoint > newPosition)? sprintf(reply, VMAX_E):sprintf(reply, VMAX_W); //high speed
+      (setpoint>newPosition)? sprintf(reply, VMAX_E):sprintf(reply, VMAX_W); //high speed
     } else {
-      (setpoint > newPosition)? sprintf(reply, VMIN_E):sprintf(reply, VMIN_W); //low speed
+      (setpoint>newPosition)? sprintf(reply, VMIN_E):sprintf(reply, VMIN_W); //low speed
     }
     if (abs(setpoint - newPosition) < DPSTOP){
       sprintf(reply, STOP); //stop movement

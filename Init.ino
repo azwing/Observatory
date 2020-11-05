@@ -17,8 +17,8 @@ void initPins() {
   pinMode(Spare28,INPUT_PULLUP);    //PA6
   pinMode(Spare29,INPUT_PULLUP);    //PA7
   
-  pinMode(Spare0, INPUT_PULLUP);    //PE0 RX0
-  pinMode(Spare1, INPUT_PULLUP);    //PE1 TX0
+  //pinMode(Spare0, INPUT_PULLUP);    //PE0 RX0
+  //pinMode(Spare1, INPUT_PULLUP);    //PE1 TX0
   
   //pinMode(Spare2, INPUT_PULLUP);    //PE4
   //pinMode(Spare3, INPUT_PULLUP);    //PE5

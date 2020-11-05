@@ -1,7 +1,6 @@
 // -----------------------------------------------------------------------------------
 // Configuration pour Arduino Mega
 // 
-
 #define Mega_ON   //  <- Definir à ON pour valider cette configuration
 
 #ifdef Mega_ON

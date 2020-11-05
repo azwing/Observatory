@@ -9,9 +9,9 @@
 #define FirmwareTime          __TIME__
 #define FirmwareVersionMajor  1
 #define FirmwareVersionMinor  2      // minor version 0 to 99
-#define FirmwareVersionPatch  "a"     // for example major.minor patch: 1.3c
+#define FirmwareVersionPatch  "b"     // for example major.minor patch: 1.3c
 #define FirmwareVersionConfig 1       // internal, for tracking configuration file changes
-#define FirmwareName          "Observatoire"
+#define FirmwareName  "Observatoire"
 #define ENCODER_USE_INTERRUPTS
 
 //#include <math.h>
@@ -47,12 +47,12 @@ void setup() {
     // take a half-second to let any connected devices come up before we start setting up pins
   delay(500);
   char tmp[50];
-  
+
   // initialize the Non-Volatile Memory
   //nv.init();
 
   // set pins for input/output as specified in Config.h and PinMap.h
-initPins();
+  initPins();
 
   // if this is the first startup set EEPROM to defaults
   //initWriteNvValues();
@@ -70,6 +70,7 @@ initPins();
   SerialB.begin(9600);
   SerialB.print("GO\n\r");
   while(SerialB.transmit());
+  //end Init OLED
 }
 
 // _                      
@@ -126,6 +127,8 @@ while (calibration){
 //  |_____|_| |_|\___\___/ \__,_|\___|_|
   
   newPosition = myEnc.read();
+  if (newPosition<0) {newPosition=MAXPOS+newPosition; myEnc.write(newPosition);}
+  if (newPosition>800) {newPosition=newPosition-MAXPOS; myEnc.write(newPosition);}
 
 //============================== check moveto
 
@@ -150,9 +153,9 @@ while (calibration){
         newPosition=1;
       }
     } else if (V_Index==HIGH) flagindex=false;
-    if ((V_Sync==HIGH)& !flagsync){
+    if ((V_Sync==LOW)& !flagsync){
       flagsync=true;
-    } else if (V_Sync==LOW) flagsync = false;
+    } else if (V_Sync==HIGH) flagsync = false;
 // __  __                   
 //|  \/  | __ _ _ __  _   _ 
 //| |\/| |/ _` | '_ \| | | |

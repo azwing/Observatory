@@ -54,7 +54,7 @@ bool rotate, flagindex, flagsync;
 int rotation=0, vitesse=0, count=0;
 char azimuth[80];
 
-bool park=true, parked=false;
+bool park=false, parked=false;
 
 bool  moveto_flag=false, reached=false;
 
