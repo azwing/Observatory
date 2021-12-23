@@ -1,7 +1,7 @@
 # Observatory
 
 ## Description
-It is an attemp to control my Astronomical observatory.
+It is an attempt to control my Astronomical observatory.
 The shelter is a cylindrical form with a flat roof with a sliding slit.
 The full shelter sits on wheels so it can rotate CW / CCW without angular limit and is driven by a whind-screen Wiper motor.
 To monitor the rotation, and encoder and a homing (North) limit switch are used.
