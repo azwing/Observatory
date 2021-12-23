@@ -49,7 +49,7 @@ The following functions are implemented:
 This is work in progress. I cannot be responsible of any damage due to the software / hardware described in here.
 
 ## Other Platforms
-I am trying to port the software to BluePill and if successfull would like to create a PCB sith all included.
+I am trying to port the software to BluePill and if successfull would like to create a dedicated PDB.
 If anybody wants to help on the project you are wellcome.
 
 ## Licence
